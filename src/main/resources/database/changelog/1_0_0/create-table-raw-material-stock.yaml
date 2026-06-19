@@ -1,0 +1,108 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table-raw_material_stock
+      author: Nilesh
+      context: dev,test,prod
+
+      changes:
+        - createTable:
+            tableName: raw_material_stock
+            columns:
+              - column:
+                  name: id
+                  type: ${UUID}
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_raw_material_stock
+                    nullable: false
+
+              - column:
+                  name: raw_material_id
+                  type: ${UUID}
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: vendor_id
+                  type: ${UUID}
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: quantity
+                  type: ${DECIMAL}
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: price_per_unit
+                  type: ${AMOUNT}
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: batch_code
+                  type: ${LONG_CODE}
+                  constraints:
+                    nullable: true
+
+              - column:
+                  name: manufacturing_date
+                  type: ${DATE}
+                  constraints:
+                    nullable: true
+
+              - column:
+                  name: purchase_date
+                  type: ${DATE}
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: expiry_date
+                  type: ${DATE}
+                  constraints:
+                    nullable: true
+
+              - column:
+                  name: status
+                  type: ${STATUS}
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            baseTableName: raw_material_stock
+            baseColumnNames: raw_material_id
+            referencedTableName: raw_material
+            referencedColumnNames: id
+            constraintName: fk_raw_matrl_stock_raw_mtrl
+
+        - addForeignKeyConstraint:
+            baseTableName: raw_material_stock
+            baseColumnNames: vendor_id
+            referencedTableName: vendor
+            referencedColumnNames: id
+            constraintName: fk_raw_matrl_stck_vndr
+
+        - createIndex:
+            tableName: raw_material_stock
+            indexName: idx_raw_material_stock_purchase_date
+            columns:
+              - column:
+                  name: purchase_date
+
+        - createIndex:
+            tableName: raw_material_stock
+            indexName: idx_raw_material_stock_expiry_date
+            columns:
+              - column:
+                  name: expiry_date
+
+        - createIndex:
+            tableName: raw_material_stock
+            indexName: idx_raw_mtrl_stck_raw_mtrl_vndr
+            columns:
+              - column:
+                  name: raw_material_id
+              - column:
+                  name: vendor_id

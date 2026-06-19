@@ -1,0 +1,18 @@
+server:
+  servlet:
+    context-path: /dev/${application.name}
+
+application:
+  datasource:
+    url: jdbc:mysql://localhost:3306/invento_dev
+    username: invento-dev
+    pswrd: SanmugdhaDev@0893
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    persistable-entity-package-names: in.maitra.treats.invento.entity
+    max-batch-size: 1000
+  liquibase:
+    enabled: true
+    change-log: classpath:database/changelog/changelog-master.yaml
+    contexts: dev
+    drop-first: true
+    default-schema: invento_dev

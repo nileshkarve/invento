@@ -1,0 +1,73 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table-user
+      author: Nilesh
+      context: dev,test,prod
+
+      changes:
+        - createTable:
+            tableName: user
+            columns:
+              - column:
+                  name: id
+                  type: ${UUID}
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_user
+                    nullable: false
+
+              - column:
+                  name: name
+                  type: ${LONG_STRING}
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: email
+                  type: ${LONG_STRING}
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: contact_number
+                  type: ${SHORT_STRING}
+                  constraints:
+                    nullable: true
+
+              - column:
+                  name: firm_id
+                  type: ${UUID}
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: status
+                  type: ${STATUS}
+                  constraints:
+                    nullable: false
+
+        - addUniqueConstraint:
+            tableName: user
+            columnNames: firm_id,email
+            constraintName: uk_user_firm_email
+
+        - addForeignKeyConstraint:
+            baseTableName: user
+            baseColumnNames: firm_id
+            referencedTableName: firm
+            referencedColumnNames: id
+            constraintName: fk_user_firm
+
+        - createIndex:
+            tableName: user
+            indexName: idx_user_firm_id
+            columns:
+              - column:
+                  name: firm_id
+
+        - createIndex:
+            tableName: user
+            indexName: idx_user_email
+            columns:
+              - column:
+                  name: email

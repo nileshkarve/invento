@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - include:
+      file: database/changelog/util/types.yaml
+  - include:
+      file: database/changelog/1_0_0/create-table-firm.yaml
+  - include:
+      file: database/changelog/1_0_0/create-table-user.yaml
+  - include:
+      file: database/changelog/1_0_0/create-table-vendor.yaml
+  - include:
+      file: database/changelog/1_0_0/create-table-raw-material.yaml
+  - include:
+      file: database/changelog/1_0_0/create-table-raw-material-stock.yaml
+  - include:
+      file: database/changelog/1_0_0/create-table-product-category.yaml
+  - include:
+      file: database/changelog/1_0_0/create-table-product.yaml

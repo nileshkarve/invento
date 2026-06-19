@@ -1,0 +1,120 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table-vendor
+      author: Nilesh
+      context: dev,test,prod
+
+      changes:
+        - createTable:
+            tableName: vendor
+            columns:
+              - column:
+                  name: id
+                  type: ${UUID}
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_vendor
+                    nullable: false
+
+              - column:
+                  name: name
+                  type: ${LONG_STRING}
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: description
+                  type: ${LONG_STRING}
+                  constraints:
+                    nullable: true
+
+              - column:
+                  name: contact_person
+                  type: ${SHORT_STRING}
+                  constraints:
+                    nullable: true
+
+              - column:
+                  name: contact_number
+                  type: ${SHORT_STRING}
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: email
+                  type: ${LONG_STRING}
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: gst_number
+                  type: ${STRING}
+                  constraints:
+                    nullable: true
+
+              - column:
+                  name: address1
+                  type: ${LONG_STRING}
+                  constraints:
+                    nullable: true
+
+              - column:
+                  name: address2
+                  type: ${LONG_STRING}
+                  constraints:
+                    nullable: true
+
+              - column:
+                  name: city
+                  type: ${SHORT_STRING}
+                  constraints:
+                    nullable: true
+
+              - column:
+                  name: state
+                  type: ${SHORT_STRING}
+                  constraints:
+                    nullable: true
+
+              - column:
+                  name: country
+                  type: ${SHORT_STRING}
+                  constraints:
+                    nullable: true
+
+              - column:
+                  name: postal_code
+                  type: ${SHORT_STRING}
+                  constraints:
+                    nullable: true
+
+              - column:
+                  name: firm_id
+                  type: ${UUID}
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: status
+                  type: ${STATUS}
+                  constraints:
+                    nullable: false
+
+        - addUniqueConstraint:
+            tableName: vendor
+            columnNames: firm_id,name
+            constraintName: uk_vendor_firm_name
+
+        - addForeignKeyConstraint:
+            baseTableName: vendor
+            baseColumnNames: firm_id
+            referencedTableName: firm
+            referencedColumnNames: id
+            constraintName: fk_vendor_firm
+
+        - createIndex:
+            tableName: vendor
+            indexName: idx_vendor_firm_id
+            columns:
+              - column:
+                  name: firm_id

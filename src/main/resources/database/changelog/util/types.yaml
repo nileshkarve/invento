@@ -1,0 +1,84 @@
+databaseChangeLog:
+  - property:
+      name: SHORT_STRING
+      value: varchar(50)
+
+  - property:
+      name: STRING
+      value: varchar(100)
+
+  - property:
+      name: LONG_STRING
+      value: varchar(255)
+
+  - property:
+      name: TEXT
+      value: varchar(4000)
+
+  - property:
+      name: TIMESTAMP
+      value: timestamp(6)
+
+  - property:
+      name: DATETIME
+      value: datetime(6)
+
+  - property:
+      name: DATE
+      value: date
+
+  - property:
+      name: AMOUNT
+      value: decimal(19,2)
+
+  - property:
+      name: BOOLEAN
+      value: boolean
+
+  - property:
+      name: UUID
+      value: uuid
+
+  - property:
+      name: JSON
+      value: json
+
+  - property:
+      name: STATUS
+      value: varchar(20)
+
+  - property:
+      name: BLOB
+      value: blob
+
+  - property:
+      name: LONG
+      value: bigint
+
+  - property:
+      name: INTEGER
+      value: int
+
+  - property:
+      name: SHORT_DECIMAL
+      value: decimal(6,2)
+
+  - property:
+      name: DECIMAL
+      value: decimal(12,2)
+
+  - property:
+      name: LONG_DECIMAL
+      value: decimal(19,2)
+
+  - property:
+      name: CODE
+      value: varchar(15)
+
+  - property:
+      name: SHORT_CODE
+      value: varchar(5)
+
+  - property:
+      name: LONG_CODE
+      value: varchar(30)
